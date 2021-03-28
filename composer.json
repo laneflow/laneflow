@@ -1,0 +1,15 @@
+{
+    "name": "laneflow/laneflow",
+    "type": "library",
+    "authors": [
+        {
+            "name": "qtvhao",
+            "email": "qtvhao@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "8.x-dev"
+    },
+    "description": "A swimlane (or swimlane diagram) is used in process flow diagrams, or flowcharts, that visually distinguishes job sharing and responsibilities for sub-processes of a business process. Swimlanes may be arranged either horizontally or vertically."
+}
