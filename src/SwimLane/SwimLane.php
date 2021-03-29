@@ -12,7 +12,7 @@ class SwimLane
     /**
      * @var Lanes
      */
-    protected $subLanes;
+    protected Lanes $subLanes;
 
     public function __construct()
     {
@@ -22,7 +22,7 @@ class SwimLane
     /**
      * @return Lanes
      */
-    public function getSubLanes()
+    public function getSubLanes(): Lanes
     {
         return $this->subLanes;
     }
@@ -30,7 +30,7 @@ class SwimLane
     /**
      * @param Lanes $subLanes
      */
-    public function setSubLanes($subLanes)
+    public function setSubLanes(Lanes $subLanes)
     {
         $this->subLanes = $subLanes;
     }
