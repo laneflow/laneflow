@@ -9,7 +9,27 @@ namespace Laneflow\Laneflow\SwimLane;
  */
 class SwimLane
 {
+    protected Lanes $lanes;
     public function __construct()
     {
+    }
+
+    /**
+     * @return Lanes
+     */
+    public function getLanes(): Lanes
+    {
+        return $this->lanes;
+    }
+
+    /**
+     * @param Lanes $lanes
+     * @return SwimLane
+     */
+    public function setLanes(Lanes $lanes): SwimLane
+    {
+        $this->lanes = $lanes;
+
+        return $this;
     }
 }
