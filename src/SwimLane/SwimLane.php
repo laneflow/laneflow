@@ -9,29 +9,7 @@ namespace Laneflow\Laneflow\SwimLane;
  */
 class SwimLane
 {
-    /**
-     * @var Lanes
-     */
-    protected Lanes $subLanes;
-
     public function __construct()
     {
-        $this->setSubLanes(new Lanes());
-    }
-
-    /**
-     * @return Lanes
-     */
-    public function getSubLanes(): Lanes
-    {
-        return $this->subLanes;
-    }
-
-    /**
-     * @param Lanes $subLanes
-     */
-    public function setSubLanes(Lanes $subLanes)
-    {
-        $this->subLanes = $subLanes;
     }
 }
