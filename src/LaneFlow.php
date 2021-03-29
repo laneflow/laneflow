@@ -8,27 +8,18 @@ use Laneflow\Laneflow\SwimLane\SwimLane;
 
 class LaneFlow
 {
-    /**
-     * @var SwimLane
-     */
-    protected $swimLane;
+    protected SwimLane $swimLane;
     public function __construct()
     {
         $this->setSwimLane(new SwimLane());
     }
 
-    /**
-     * @return SwimLane
-     */
-    public function getSwimLane()
+    public function getSwimLane(): SwimLane
     {
         return $this->swimLane;
     }
 
-    /**
-     * @param SwimLane $swimLane
-     */
-    public function setSwimLane($swimLane)
+    public function setSwimLane(SwimLane $swimLane)
     {
         $this->swimLane = $swimLane;
     }
