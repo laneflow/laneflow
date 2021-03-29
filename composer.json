@@ -24,5 +24,10 @@
     "require": {
         "illuminate/support": "8.x-dev"
     },
+    "require-dev": {
+        "codedungeon/phpunit-result-printer": "^0.30.0",
+        "illuminate/container": "^8.0.0 || ^9.0.0",
+        "phpunit/phpunit": "^9.5.0"
+    },
     "description": "A swimlane (or swimlane diagram) is used in process flow diagrams, or flowcharts, that visually distinguishes job sharing and responsibilities for sub-processes of a business process. Swimlanes may be arranged either horizontally or vertically."
 }
