@@ -7,6 +7,19 @@
             "email": "qtvhao@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Laneflow\\Laneflow\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laneflow\\Laneflow\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "minimum-stability": "dev",
     "require": {
         "illuminate/support": "8.x-dev"
