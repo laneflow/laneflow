@@ -7,8 +7,7 @@ namespace Laneflow\Laneflow\Example;
 use Laneflow\Laneflow\Example\Lanes\CustomerLane;
 use Laneflow\Laneflow\Example\Lanes\SalesLane;
 use Laneflow\Laneflow\Example\Process\CustomerSubmitsPurchaseOrder;
-use Laneflow\Laneflow\Example\Process\EntersOrder;
-use Laneflow\Laneflow\Example\Process\RepLogsPO;
+use Laneflow\Laneflow\Example\Process\RepLogsPOEntersOrder;
 use Laneflow\Laneflow\Example\Step\StepCreateOrder;
 use Laneflow\Laneflow\LaneFlow;
 
@@ -25,26 +24,25 @@ class ExampleFlow extends LaneFlow
         parent::__construct();
         //PROCESSES
         $customerSubmitsPurchaseOrder = new CustomerSubmitsPurchaseOrder();
-        $repLogsPO = new RepLogsPO();
-        $entersOrder = new EntersOrder();
+        $repLogsPOEntersOrder = new RepLogsPOEntersOrder();
 
         //LANES
         $customerLane = new CustomerLane();
+        $customerLane->setLabel('Customer');
         $customerLane
             ->addProcess($customerSubmitsPurchaseOrder)
         ;
         $salesLane = new SalesLane();
+        $salesLane->setLabel('Sales');
         $salesLane
-            ->addProcess($repLogsPO)
-            ->addProcess($entersOrder)
+            ->addProcess($repLogsPOEntersOrder)
         ;
 
         //STEPS
         $stepCreateOrder = new StepCreateOrder();
         $stepCreateOrder
             ->addProcess($customerSubmitsPurchaseOrder)
-            ->addProcess($repLogsPO)
-            ->addProcess($entersOrder)
+            ->addProcess($repLogsPOEntersOrder)
         ;
 
         $this
