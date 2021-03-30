@@ -3,6 +3,11 @@
 
 namespace Laneflow\Laneflow\Graphic;
 
+
+use Laneflow\Laneflow\SwimLane\Lane\Lane;
+use Laneflow\Laneflow\SwimLane\Lanes;
+use Laneflow\Laneflow\SwimLane\Process\Process;
+use Laneflow\Laneflow\SwimLane\Step\Step;
 use Laneflow\Laneflow\SwimLane\SwimLane;
 
 class StepsAsRowsRenderer
@@ -19,8 +24,23 @@ class StepsAsRowsRenderer
 
     public function __toString(): string
     {
+        $swimLane = $this->getSwimlane();
+        $lanes = $swimLane->getLanes();
+        $steps = $swimLane->getSteps();
+        $renderer = $this;
+        $rows = $steps
+            ->map(function(Step$step) use ($renderer, $lanes) {
+                $cells = $renderer->getCellsForStep($lanes, $step);
+                return <<<HTML
+<tr>
+    $cells
+</tr>
+HTML;
+            })
+            ->implode('')
+        ;
         return <<<HTML
-    \$rows
+    $rows
 HTML;
     }
 
@@ -41,4 +61,22 @@ HTML;
     {
         return $this->swimLane;
     }
+
+    private function getCellsForStep(Lanes $lanes, Step $step): string
+    {
+        return $lanes->map(function(Lane$lane) use ($step) {
+            $matchProcess = $lane
+                ->getProcesses()
+                ->first(function (Process $process) use ($step) {
+                    return $process->getStep() === $step;
+                });
+            if($matchProcess instanceof Process) {
+                return "<td>$matchProcess</td>";
+            }else {
+                return '<td></td>';
+            }
+        })
+            ->implode('');
+    }
+
 }
