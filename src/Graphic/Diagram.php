@@ -20,7 +20,17 @@ class Diagram
 
     public function __toString(): string
     {
-        return "<canvas></canvas>";
+        return <<<HTML
+<div id="app"></div>
+<script >
+const canvas = document.createElement('canvas');
+canvas.id = 'canvas';
+document.getElementById('app').appendChild(canvas);
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'green';
+ctx.fillRect(10, 10, 150, 100);
+</script>
+HTML;
     }
 
     /**
