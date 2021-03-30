@@ -5,6 +5,8 @@ namespace Laneflow\Laneflow\Example;
 
 
 use Laneflow\Laneflow\Example\Lanes\CustomerLane;
+use Laneflow\Laneflow\Example\Process\CustomerSubmitsPurchaseOrder;
+use Laneflow\Laneflow\Example\Step\StepCreateOrder;
 use Laneflow\Laneflow\LaneFlow;
 
 /**
@@ -18,10 +20,23 @@ class ExampleFlow extends LaneFlow
     public function __construct()
     {
         parent::__construct();
+        //PROCESSES
+        $customerSubmitsPurchaseOrder = new CustomerSubmitsPurchaseOrder();
+
+        //LANES
         $customerLane = new CustomerLane();
+        $customerLane
+            ->addProcess($customerSubmitsPurchaseOrder)
+        ;
+
+        //STEPS
+        $stepCreateOrder = new StepCreateOrder();
+        $customerSubmitsPurchaseOrder->setStep($stepCreateOrder);
+
         $this
             ->getSwimLane()
             ->addLane($customerLane)
+            ->addStep($stepCreateOrder)
         ;
     }
 
