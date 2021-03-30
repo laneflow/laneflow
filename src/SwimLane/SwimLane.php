@@ -20,7 +20,9 @@ class SwimLane
 
     public function __construct(LaneFlow$laneFlow)
     {
-        $this->setLanes(new Lanes());
+        $lanes = new Lanes();
+        $lanes->setSwimlane($this);
+        $this->setLanes($lanes);
         $this->setLaneFlow($laneFlow);
     }
 
