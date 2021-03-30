@@ -5,8 +5,6 @@ namespace Laneflow\Laneflow\Example;
 
 
 use Laneflow\Laneflow\Example\Lanes\CustomerLane;
-use Laneflow\Laneflow\Example\Process\CustomerSubmitsPurchaseOrder;
-use Laneflow\Laneflow\Example\Responsible\CustomerResponsible;
 use Laneflow\Laneflow\LaneFlow;
 
 /**
@@ -21,10 +19,6 @@ class ExampleFlow extends LaneFlow
     {
         parent::__construct();
         $customerLane = new CustomerLane();
-        $customerLane
-            ->addResponsible(new CustomerResponsible())
-            ->addProcess(new CustomerSubmitsPurchaseOrder())
-        ;
         $this
             ->getSwimLane()
             ->addLane($customerLane)
