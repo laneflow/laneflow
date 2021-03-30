@@ -9,6 +9,12 @@ use Laneflow\Laneflow\Example\Process\CustomerSubmitsPurchaseOrder;
 use Laneflow\Laneflow\Example\Responsible\CustomerResponsible;
 use Laneflow\Laneflow\LaneFlow;
 
+/**
+ * Class ExampleFlow
+ * @package Laneflow\Laneflow\Example
+ * Swimlane flowchart. Here, the swimlanes are named Customer, Sales, Contracts, Legal, and Fulfillment, and are arranged vertically.
+ * https://en.wikipedia.org/wiki/Swim_lane#/media/File:Approvals.svg
+ */
 class ExampleFlow extends LaneFlow
 {
     public function __construct()
