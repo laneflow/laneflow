@@ -12,22 +12,31 @@ use ReflectionClass;
 class Process
 {
     protected string $code;
+    protected string $label;
     protected Step $step;
 
-    public function __construct()
+    public function __construct($code = null, $label = null)
     {
         $reflect = new ReflectionClass($this);
 
-        $this->setCode(Str::snake($reflect->getShortName()));
+        if(empty($code)){
+            $code = Str::snake($reflect->getShortName());
+        }
+        $this->setCode($code);
+
+        if(empty($label)) {
+            $label = $reflect->getShortName();
+        }
+        $this->setLabel($label);
     }
 
     #[Pure] public function __toString(): string
     {
-        $code = $this->getCode();
+        $label = $this->getLabel();
 
         return "<div style='border: 1px solid black;
     padding: 10px 10px;
-    border-radius: 20px;margin: 25px;'>$code</div>";
+    border-radius: 20px;margin: 25px;'>$label</div>";
     }
 
     /**
@@ -64,5 +73,23 @@ class Process
     public function getStep(): Step
     {
         return $this->step;
+    }
+
+    /**
+     * @param string $label
+     * @return Process
+     */
+    public function setLabel(string $label): Process
+    {
+        $this->label = $label;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
     }
 }
