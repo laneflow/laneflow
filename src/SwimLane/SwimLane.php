@@ -25,7 +25,8 @@ class SwimLane
         $lanes->setSwimlane($this);
         $this->setLanes($lanes);
         $this->setLaneFlow($laneFlow);
-        $this->setSteps(new Steps());
+        $steps = Steps::createBySwimlane($this);
+        $this->setSteps($steps);
     }
 
     /**

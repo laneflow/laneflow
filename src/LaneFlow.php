@@ -20,7 +20,7 @@ class LaneFlow
 
     #[Pure] public function __toString(): string
     {
-        return $this->getDiagram()->__toString();
+        return (string)($this->getDiagram());
     }
 
 

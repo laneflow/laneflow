@@ -4,6 +4,7 @@
 namespace Laneflow\Laneflow\Graphic;
 
 
+use JetBrains\PhpStorm\Pure;
 use Laneflow\Laneflow\LaneFlow;
 
 class Diagram
@@ -18,18 +19,16 @@ class Diagram
         $this->setLaneFlow($laneFlow);
     }
 
-    public function __toString(): string
+    #[Pure] public function __toString(): string
     {
+        $steps = (string)($this
+            ->getLaneFlow()
+            ->getSwimLane()
+            ->getSteps());
         return <<<HTML
-<div id="app"></div>
-<script >
-const canvas = document.createElement('canvas');
-canvas.id = 'canvas';
-document.getElementById('app').appendChild(canvas);
-const ctx = canvas.getContext('2d');
-ctx.fillStyle = 'green';
-ctx.fillRect(10, 10, 150, 100);
-</script>
+<table>
+$steps
+</table>
 HTML;
     }
 
