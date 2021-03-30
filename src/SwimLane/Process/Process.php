@@ -5,6 +5,7 @@ namespace Laneflow\Laneflow\SwimLane\Process;
 
 
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\Pure;
 use Laneflow\Laneflow\SwimLane\Step\Step;
 use ReflectionClass;
 
@@ -18,6 +19,14 @@ class Process
         $reflect = new ReflectionClass($this);
 
         $this->setCode(Str::snake($reflect->getShortName()));
+    }
+
+    #[Pure] public function __toString(): string
+    {
+        $code = $this->getCode();
+        $stepCode = $this->getStep()->getCode();
+
+        return "Process $code on step $stepCode";
     }
 
     /**
