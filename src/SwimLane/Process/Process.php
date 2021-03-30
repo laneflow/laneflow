@@ -5,12 +5,13 @@ namespace Laneflow\Laneflow\SwimLane\Process;
 
 
 use Illuminate\Support\Str;
+use Laneflow\Laneflow\SwimLane\Step\Step;
 use ReflectionClass;
 
 class Process
 {
     protected string $code;
-    protected string $step;
+    protected Step $step;
 
     public function __construct()
     {
@@ -38,19 +39,19 @@ class Process
     }
 
     /**
-     * @param string $step
+     * @param Step $step
      * @return Process
      */
-    public function setStep(string $step): Process
+    public function setStep(Step $step): Process
     {
         $this->step = $step;
         return $this;
     }
 
     /**
-     * @return string
+     * @return Step
      */
-    public function getStep(): string
+    public function getStep(): Step
     {
         return $this->step;
     }
