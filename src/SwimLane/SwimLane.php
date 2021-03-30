@@ -3,6 +3,7 @@ namespace Laneflow\Laneflow\SwimLane;
 
 use Laneflow\Laneflow\LaneFlow;
 use Laneflow\Laneflow\SwimLane\Lane\Lane;
+use Laneflow\Laneflow\SwimLane\Step\Step;
 
 /**
  * Class SwimLane
@@ -66,9 +67,11 @@ class SwimLane
         return $this->laneFlow;
     }
 
-    public function addLane(Lane $lane)
+    public function addLane(Lane $lane): SwimLane
     {
         $this->getLanes()->put($lane->getCode(), $lane);
+
+        return $this;
     }
 
     /**
@@ -87,5 +90,13 @@ class SwimLane
     public function getSteps(): Steps
     {
         return $this->steps;
+    }
+
+    public function addStep(Step $step)
+    {
+        $this
+            ->getSteps()
+            ->put($step->getCode(), $step)
+        ;
     }
 }
