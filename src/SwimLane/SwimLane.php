@@ -13,6 +13,7 @@ use Laneflow\Laneflow\SwimLane\Lane\Lane;
 class SwimLane
 {
     protected Lanes $lanes;
+    protected Steps $steps;
     /**
      * @var LaneFlow
      */
@@ -24,6 +25,7 @@ class SwimLane
         $lanes->setSwimlane($this);
         $this->setLanes($lanes);
         $this->setLaneFlow($laneFlow);
+        $this->setSteps(new Steps());
     }
 
     /**
@@ -66,5 +68,23 @@ class SwimLane
     public function addLane(Lane $lane)
     {
         $this->getLanes()->put($lane->getCode(), $lane);
+    }
+
+    /**
+     * @param Steps $steps
+     * @return SwimLane
+     */
+    public function setSteps(Steps $steps): SwimLane
+    {
+        $this->steps = $steps;
+        return $this;
+    }
+
+    /**
+     * @return Steps
+     */
+    public function getSteps(): Steps
+    {
+        return $this->steps;
     }
 }
