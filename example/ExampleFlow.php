@@ -21,8 +21,8 @@ class ExampleFlow extends LaneFlow
         ;
         $this
             ->getSwimLane()
-            ->getLanes()
-            ->add($customerLane);
+            ->addLane($customerLane)
+        ;
     }
 
 }

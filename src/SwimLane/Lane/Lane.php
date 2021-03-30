@@ -4,13 +4,16 @@
 namespace Laneflow\Laneflow\SwimLane\Lane;
 
 
+use Illuminate\Support\Str;
 use Laneflow\Laneflow\SwimLane\Process\Process;
 use Laneflow\Laneflow\SwimLane\Processes;
 use Laneflow\Laneflow\SwimLane\Responsible\Responsible;
 use Laneflow\Laneflow\SwimLane\Responsibles;
+use ReflectionClass;
 
 class Lane
 {
+    protected string $code;
     protected string $label;
 
     protected Processes $processes;
@@ -33,6 +36,10 @@ class Lane
     {
         $this->setProcesses(new Processes());
         $this->setResponsibles(new Responsibles());
+        $reflect = new ReflectionClass($this);
+        $shortName = $reflect->getShortName();
+        $this->setCode(Str::snake($shortName));
+        $this->setLabel(Str::title($shortName));
 
     }
 
@@ -88,5 +95,23 @@ class Lane
     public function getResponsibles(): Responsibles
     {
         return $this->responsibles;
+    }
+
+    /**
+     * @param string $code
+     * @return Lane
+     */
+    public function setCode(string $code): Lane
+    {
+        $this->code = $code;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode(): string
+    {
+        return $this->code;
     }
 }
