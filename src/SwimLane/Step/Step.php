@@ -4,9 +4,17 @@
 namespace Laneflow\Laneflow\SwimLane\Step;
 
 
+use ReflectionClass;
+
 class Step
 {
     protected string $code;
+
+    public function __construct()
+    {
+        $reflect = new ReflectionClass($this);
+        $this->setCode($reflect->getShortName());
+    }
 
     /**
      * @param string $code
