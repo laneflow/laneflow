@@ -41,9 +41,11 @@ class ExampleFlow extends LaneFlow
 
         //STEPS
         $stepCreateOrder = new StepCreateOrder();
-        $customerSubmitsPurchaseOrder->setStep($stepCreateOrder);
-        $repLogsPO->setStep($stepCreateOrder);
-        $entersOrder->setStep($stepCreateOrder);
+        $stepCreateOrder
+            ->addProcess($customerSubmitsPurchaseOrder)
+            ->addProcess($repLogsPO)
+            ->addProcess($entersOrder)
+        ;
 
         $this
             ->getSwimLane()
