@@ -28,19 +28,30 @@ class StepsAsRowsRenderer
         $lanes = $swimLane->getLanes();
         $steps = $swimLane->getSteps();
         $renderer = $this;
-        $rows = $steps
+        $bodyRows = $steps
             ->map(function(Step$step) use ($renderer, $lanes) {
                 $cells = $renderer->getCellsForStep($lanes, $step);
+                $stepCode = $step->getCode();
                 return <<<HTML
 <tr>
+    <td>$stepCode</td>
     $cells
 </tr>
 HTML;
             })
             ->implode('')
         ;
+        $headRows = "<td></td>" . $lanes->map(function(Lane$lane){
+            $label = $lane->getLabel();
+            return "<td style='text-align: center'>$label</td>";
+        })->implode('');
         return <<<HTML
-    $rows
+<thead>
+    $headRows
+</thead>
+    <tbody>
+    $bodyRows
+</tbody>
 HTML;
     }
 

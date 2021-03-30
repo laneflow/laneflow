@@ -24,9 +24,10 @@ class Process
     #[Pure] public function __toString(): string
     {
         $code = $this->getCode();
-        $stepCode = $this->getStep()->getCode();
 
-        return "Process $code on step $stepCode";
+        return "<div style='border: 1px solid black;
+    padding: 10px 10px;
+    border-radius: 20px;margin: 25px;'>$code</div>";
     }
 
     /**
