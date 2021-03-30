@@ -12,6 +12,7 @@ class SwimLane
     protected Lanes $lanes;
     public function __construct()
     {
+        $this->setLanes(new Lanes());
     }
 
     /**
