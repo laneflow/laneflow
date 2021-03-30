@@ -4,6 +4,7 @@
 namespace Laneflow\Laneflow\SwimLane\Step;
 
 
+use Laneflow\Laneflow\SwimLane\Process\Process;
 use ReflectionClass;
 
 class Step
@@ -32,5 +33,15 @@ class Step
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    /**
+     * @param Process $process
+     * @return $this
+     */
+    public function addProcess(Process$process): Step
+    {
+        $process->setStep($this);
+        return $this;
     }
 }
