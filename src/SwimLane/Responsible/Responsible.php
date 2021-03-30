@@ -5,6 +5,7 @@ namespace Laneflow\Laneflow\SwimLane\Responsible;
 
 
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 class Responsible
 {
@@ -12,7 +13,9 @@ class Responsible
 
     public function __construct()
     {
-        $this->setCode(Str::snake(__CLASS__));
+        $reflect = new ReflectionClass($this);
+
+        $this->setCode(Str::snake($reflect->getShortName()));
     }
 
     /**

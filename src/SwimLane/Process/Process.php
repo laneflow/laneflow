@@ -5,6 +5,7 @@ namespace Laneflow\Laneflow\SwimLane\Process;
 
 
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 class Process
 {
@@ -12,7 +13,9 @@ class Process
 
     public function __construct()
     {
-        $this->setCode(Str::snake(__CLASS__));
+        $reflect = new ReflectionClass($this);
+
+        $this->setCode(Str::snake($reflect->getShortName()));
     }
 
     /**
