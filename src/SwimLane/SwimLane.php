@@ -1,6 +1,8 @@
 <?php
 namespace Laneflow\Laneflow\SwimLane;
 
+use Laneflow\Laneflow\LaneFlow;
+
 /**
  * Class SwimLane
  * A swimlane (or swimlane diagram) is used in process flow diagrams, or flowcharts,
@@ -10,9 +12,15 @@ namespace Laneflow\Laneflow\SwimLane;
 class SwimLane
 {
     protected Lanes $lanes;
-    public function __construct()
+    /**
+     * @var LaneFlow
+     */
+    private LaneFlow $laneFlow;
+
+    public function __construct(LaneFlow$laneFlow)
     {
         $this->setLanes(new Lanes());
+        $this->setLaneFlow($laneFlow);
     }
 
     /**
@@ -32,5 +40,23 @@ class SwimLane
         $this->lanes = $lanes;
 
         return $this;
+    }
+
+    /**
+     * @param LaneFlow $laneFlow
+     * @return SwimLane
+     */
+    public function setLaneFlow(LaneFlow $laneFlow): SwimLane
+    {
+        $this->laneFlow = $laneFlow;
+        return $this;
+    }
+
+    /**
+     * @return LaneFlow
+     */
+    public function getLaneFlow(): LaneFlow
+    {
+        return $this->laneFlow;
     }
 }
