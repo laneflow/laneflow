@@ -27,9 +27,11 @@ class Lane
         return $this;
     }
 
-    public function addProcess(Process$process)
+    public function addProcess(Process$process): Lane
     {
         $this->getProcesses()->put($process->getCode(), $process);
+
+        return $this;
     }
 
     public function __construct()
