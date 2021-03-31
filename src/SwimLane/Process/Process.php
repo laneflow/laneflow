@@ -34,9 +34,7 @@ class Process
     {
         $label = $this->getLabel();
 
-        return "<div style='border: 1px solid black;
-    padding: 10px 10px;
-    border-radius: 20px;margin: 25px;'>$label</div>";
+        return "<div style='text-align:center;font-size: 12px; border: 1px solid black; padding: 6px 10px; border-radius: 20px; margin: 10px;'>$label</div>";
     }
 
     /**

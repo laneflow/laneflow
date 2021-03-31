@@ -7,9 +7,11 @@ namespace Laneflow\Laneflow\Example;
 use Laneflow\Laneflow\Example\Lanes\ContractsLane;
 use Laneflow\Laneflow\Example\Lanes\CustomerLane;
 use Laneflow\Laneflow\Example\Lanes\SalesLane;
+use Laneflow\Laneflow\Example\Process\CheckStandardTerms;
 use Laneflow\Laneflow\Example\Process\ContractsAgentReviewsOrder;
 use Laneflow\Laneflow\Example\Process\CustomerSubmitsPurchaseOrder;
 use Laneflow\Laneflow\Example\Process\RepLogsPOEntersOrder;
+use Laneflow\Laneflow\Example\Step\StepCheckStandardTerms;
 use Laneflow\Laneflow\Example\Step\StepCreateOrder;
 use Laneflow\Laneflow\LaneFlow;
 
@@ -29,6 +31,7 @@ class ExampleFlow extends LaneFlow
         $customerSubmitsPurchaseOrder = new CustomerSubmitsPurchaseOrder();
         $repLogsPOEntersOrder = new RepLogsPOEntersOrder();
         $contractsAgentReviewsOrder = new ContractsAgentReviewsOrder();
+        $checkStandardTerms = new CheckStandardTerms();
 
         //LANES
         $customerLane = new CustomerLane();
@@ -44,6 +47,7 @@ class ExampleFlow extends LaneFlow
         $contractsLane = new ContractsLane();
         $contractsLane
             ->addProcess($contractsAgentReviewsOrder)
+            ->addProcess($checkStandardTerms)
         ;
 
         //STEPS
@@ -54,12 +58,17 @@ class ExampleFlow extends LaneFlow
             ->addProcess($contractsAgentReviewsOrder)
         ;
 
+        $stepCheckStandardTerms = new StepCheckStandardTerms();
+        $stepCheckStandardTerms
+            ->addProcess($checkStandardTerms);
+
         $this
             ->getSwimLane()
             ->addLane($customerLane)
             ->addLane($salesLane)
             ->addLane($contractsLane)
             ->addStep($stepCreateOrder)
+            ->addStep($stepCheckStandardTerms)
         ;
     }
 
