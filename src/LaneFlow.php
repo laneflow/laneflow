@@ -5,7 +5,9 @@ namespace Laneflow\Laneflow;
 
 
 use JetBrains\PhpStorm\Pure;
+use Laneflow\Laneflow\Contracts\RoutingContract;
 use Laneflow\Laneflow\Graphic\Diagram;
+use Laneflow\Laneflow\SwimLane\Lane\Lane;
 use Laneflow\Laneflow\SwimLane\SwimLane;
 
 class LaneFlow
@@ -52,4 +54,21 @@ class LaneFlow
         return $this->diagram;
     }
 
+    public function addRoutes()
+    {
+        $routableSymbols = $this
+            ->getSwimLane()
+            ->getLanes()
+            ->map(function (Lane $lane) {
+                return $lane->getSymbols();
+            })
+            ->flatten()
+            ->filter(function ($symbol) {
+                return $symbol instanceof RoutingContract;
+            });
+        $routableSymbols
+            ->each(function (RoutingContract $routingContract) {
+                $routingContract->addRoutes();
+            });
+    }
 }
