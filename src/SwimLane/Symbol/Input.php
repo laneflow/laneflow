@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use JetBrains\PhpStorm\Pure;
 use Laneflow\Laneflow\Contracts\RoutingContract;
+use Route;
 
 abstract class Input extends Symbol implements RoutingContract
 {
@@ -23,6 +24,8 @@ abstract class Input extends Symbol implements RoutingContract
 
     public function addRoutes()
     {
+        $uri = $this->getBaseUri();
+        Route::get($uri, [static::class, 'create'])->name($uri);
     }
 
     abstract public function create(): Factory|View|Application;
