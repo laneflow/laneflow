@@ -7,10 +7,10 @@ namespace Laneflow\Laneflow\Example;
 use Laneflow\Laneflow\Example\Lanes\ContractsLane;
 use Laneflow\Laneflow\Example\Lanes\CustomerLane;
 use Laneflow\Laneflow\Example\Lanes\SalesLane;
-use Laneflow\Laneflow\Example\Process\CheckStandardTerms;
-use Laneflow\Laneflow\Example\Process\ContractsAgentReviewsOrder;
-use Laneflow\Laneflow\Example\Process\CustomerSubmitsPurchaseOrder;
-use Laneflow\Laneflow\Example\Process\RepLogsPOEntersOrder;
+use Laneflow\Laneflow\Example\Symbol\CheckStandardTerms;
+use Laneflow\Laneflow\Example\Symbol\ContractsAgentReviewsOrder;
+use Laneflow\Laneflow\Example\Symbol\CustomerSubmitsPurchaseOrder;
+use Laneflow\Laneflow\Example\Symbol\RepLogsPOEntersOrder;
 use Laneflow\Laneflow\Example\Step\StepCheckStandardTerms;
 use Laneflow\Laneflow\Example\Step\StepCreateOrder;
 use Laneflow\Laneflow\LaneFlow;
@@ -37,30 +37,30 @@ class ExampleFlow extends LaneFlow
         $customerLane = new CustomerLane();
         $customerLane->setLabel('Customer');
         $customerLane
-            ->addProcess($customerSubmitsPurchaseOrder)
+            ->addSymbol($customerSubmitsPurchaseOrder)
         ;
         $salesLane = new SalesLane();
         $salesLane->setLabel('Sales');
         $salesLane
-            ->addProcess($repLogsPOEntersOrder)
+            ->addSymbol($repLogsPOEntersOrder)
         ;
         $contractsLane = new ContractsLane();
         $contractsLane
-            ->addProcess($contractsAgentReviewsOrder)
-            ->addProcess($checkStandardTerms)
+            ->addSymbol($contractsAgentReviewsOrder)
+            ->addSymbol($checkStandardTerms)
         ;
 
         //STEPS
         $stepCreateOrder = new StepCreateOrder();
         $stepCreateOrder
-            ->addProcess($customerSubmitsPurchaseOrder)
-            ->addProcess($repLogsPOEntersOrder)
-            ->addProcess($contractsAgentReviewsOrder)
+            ->addSymbol($customerSubmitsPurchaseOrder)
+            ->addSymbol($repLogsPOEntersOrder)
+            ->addSymbol($contractsAgentReviewsOrder)
         ;
 
         $stepCheckStandardTerms = new StepCheckStandardTerms();
         $stepCheckStandardTerms
-            ->addProcess($checkStandardTerms);
+            ->addSymbol($checkStandardTerms);
 
         $this
             ->getSwimLane()

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Laneflow\Laneflow\Example\Process;
+namespace Laneflow\Laneflow\Example\Symbol;
 
 
-use Laneflow\Laneflow\SwimLane\Process\Process;
+use Laneflow\Laneflow\SwimLane\Symbol\Symbol;
 
-class CustomerSubmitsPurchaseOrder extends Process
+class CustomerSubmitsPurchaseOrder extends Symbol
 {
     public function __construct($code = 'customer_submits_po', $label = 'Customer submits PO')
     {

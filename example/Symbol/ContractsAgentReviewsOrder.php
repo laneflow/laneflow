@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Laneflow\Laneflow\Example\Process;
+namespace Laneflow\Laneflow\Example\Symbol;
 
 
-use Laneflow\Laneflow\SwimLane\Process\Process;
+use Laneflow\Laneflow\SwimLane\Symbol\Symbol;
 
-class ContractsAgentReviewsOrder extends Process
+class ContractsAgentReviewsOrder extends Symbol
 {
     public function __construct($code = 'contracts_agent_reviews_order', $label = 'Contracts Agent<br>&nbsp;&nbsp;&nbsp;Reviews Order')
     {

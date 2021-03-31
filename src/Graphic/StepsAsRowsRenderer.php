@@ -6,7 +6,7 @@ namespace Laneflow\Laneflow\Graphic;
 
 use Laneflow\Laneflow\SwimLane\Lane\Lane;
 use Laneflow\Laneflow\SwimLane\Lanes;
-use Laneflow\Laneflow\SwimLane\Process\Process;
+use Laneflow\Laneflow\SwimLane\Symbol\Symbol;
 use Laneflow\Laneflow\SwimLane\Step\Step;
 use Laneflow\Laneflow\SwimLane\SwimLane;
 
@@ -34,7 +34,7 @@ class StepsAsRowsRenderer
                 $stepCode = $step->getCode();
                 return <<<HTML
 <tr>
-    <td>$stepCode</td>
+    <td><span style="font-size: 10px;">$stepCode</span></td>
     $cells
 </tr>
 HTML;
@@ -76,13 +76,13 @@ HTML;
     private function getCellsForStep(Lanes $lanes, Step $step): string
     {
         return $lanes->map(function(Lane$lane) use ($step) {
-            $matchProcess = $lane
-                ->getProcesses()
-                ->first(function (Process $process) use ($step) {
-                    return $process->getStep() === $step;
+            $matchSymbol = $lane
+                ->getSymbols()
+                ->first(function (Symbol $symbol) use ($step) {
+                    return $symbol->getStep() === $step;
                 });
-            if($matchProcess instanceof Process) {
-                return "<td>$matchProcess</td>";
+            if($matchSymbol instanceof Symbol) {
+                return "<td>$matchSymbol</td>";
             }else {
                 return '<td></td>';
             }

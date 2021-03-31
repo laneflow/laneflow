@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Laneflow\Laneflow\SwimLane\Process;
+namespace Laneflow\Laneflow\SwimLane\Symbol;
 
 
 use Illuminate\Support\Str;
@@ -9,7 +9,7 @@ use JetBrains\PhpStorm\Pure;
 use Laneflow\Laneflow\SwimLane\Step\Step;
 use ReflectionClass;
 
-class Process
+class Symbol
 {
     protected string $code;
     protected string $label;
@@ -34,14 +34,14 @@ class Process
     {
         $label = $this->getLabel();
 
-        return "<div style='text-align:center;font-size: 12px; border: 1px solid black; padding: 6px 10px; border-radius: 20px; margin: 10px;'>$label</div>";
+        return "<div style='  justify-content: center;  display: flex;    align-items: center;min-height: 28px;text-align:center;font-size: 12px; border: 1px solid black; padding: 6px 10px; border-radius: 20px; margin: 10px;'>$label</div>";
     }
 
     /**
      * @param string $code
-     * @return Process
+     * @return Symbol
      */
-    public function setCode(string $code): Process
+    public function setCode(string $code): Symbol
     {
         $this->code = $code;
         return $this;
@@ -57,9 +57,9 @@ class Process
 
     /**
      * @param Step $step
-     * @return Process
+     * @return Symbol
      */
-    public function setStep(Step $step): Process
+    public function setStep(Step $step): Symbol
     {
         $this->step = $step;
         return $this;
@@ -75,9 +75,9 @@ class Process
 
     /**
      * @param string $label
-     * @return Process
+     * @return Symbol
      */
-    public function setLabel(string $label): Process
+    public function setLabel(string $label): Symbol
     {
         $this->label = $label;
         return $this;

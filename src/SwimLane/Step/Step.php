@@ -4,7 +4,7 @@
 namespace Laneflow\Laneflow\SwimLane\Step;
 
 
-use Laneflow\Laneflow\SwimLane\Process\Process;
+use Laneflow\Laneflow\SwimLane\Symbol\Symbol;
 use ReflectionClass;
 
 class Step
@@ -36,12 +36,12 @@ class Step
     }
 
     /**
-     * @param Process $process
+     * @param Symbol $symbol
      * @return $this
      */
-    public function addProcess(Process$process): Step
+    public function addSymbol(Symbol$symbol): Step
     {
-        $process->setStep($this);
+        $symbol->setStep($this);
         return $this;
     }
 }

@@ -5,8 +5,8 @@ namespace Laneflow\Laneflow\SwimLane\Lane;
 
 
 use Illuminate\Support\Str;
-use Laneflow\Laneflow\SwimLane\Process\Process;
-use Laneflow\Laneflow\SwimLane\Processes;
+use Laneflow\Laneflow\SwimLane\Symbol\Symbol;
+use Laneflow\Laneflow\SwimLane\Symbols;
 use Laneflow\Laneflow\SwimLane\Responsible\Responsible;
 use Laneflow\Laneflow\SwimLane\Responsibles;
 use ReflectionClass;
@@ -16,7 +16,7 @@ class Lane
     protected string $code;
     protected string $label;
 
-    protected Processes $processes;
+    protected Symbols $symbols;
     protected Responsibles $responsibles;
 
     public function addResponsible(Responsible$responsible): Lane
@@ -27,16 +27,16 @@ class Lane
         return $this;
     }
 
-    public function addProcess(Process$process): Lane
+    public function addSymbol(Symbol$symbol): Lane
     {
-        $this->getProcesses()->put($process->getCode(), $process);
+        $this->getSymbols()->put($symbol->getCode(), $symbol);
 
         return $this;
     }
 
     public function __construct()
     {
-        $this->setProcesses(new Processes());
+        $this->setSymbols(new Symbols());
         $this->setResponsibles(new Responsibles());
         $reflect = new ReflectionClass($this);
         $shortName = $reflect->getShortName();
@@ -64,21 +64,21 @@ class Lane
     }
 
     /**
-     * @param Processes $processes
+     * @param Symbols $symbols
      * @return Lane
      */
-    public function setProcesses(Processes $processes): Lane
+    public function setSymbols(Symbols $symbols): Lane
     {
-        $this->processes = $processes;
+        $this->symbols = $symbols;
         return $this;
     }
 
     /**
-     * @return Processes
+     * @return Symbols
      */
-    public function getProcesses(): Processes
+    public function getSymbols(): Symbols
     {
-        return $this->processes;
+        return $this->symbols;
     }
 
     /**
