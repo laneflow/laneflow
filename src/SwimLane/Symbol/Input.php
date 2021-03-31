@@ -4,7 +4,7 @@
 namespace Laneflow\Laneflow\SwimLane\Symbol;
 
 
-class Input
+class Input extends Symbol
 {
 
 }
