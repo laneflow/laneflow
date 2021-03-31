@@ -22,7 +22,7 @@ abstract class Input extends Symbol implements RoutingContract
 	transform: skew(-10deg);'>$label</div>";
     }
 
-    public function addRoutes()
+    public function registerRoutes()
     {
         $uri = $this->getBaseUri();
         Route::get($uri, [static::class, 'create'])->name($uri);
