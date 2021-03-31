@@ -92,11 +92,13 @@ class SwimLane
         return $this->steps;
     }
 
-    public function addStep(Step $step)
+    public function addStep(Step $step): SwimLane
     {
         $this
             ->getSteps()
             ->put($step->getCode(), $step)
         ;
+
+        return $this;
     }
 }
