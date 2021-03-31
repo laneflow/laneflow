@@ -23,7 +23,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "illuminate/support": "8.x-dev"
+        "illuminate/support": "^8.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.30.0",
