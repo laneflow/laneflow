@@ -4,9 +4,13 @@
 namespace Laneflow\Laneflow\SwimLane\Symbol;
 
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use JetBrains\PhpStorm\Pure;
+use Laneflow\Laneflow\Contracts\RoutingContract;
 
-class Input extends Symbol
+abstract class Input extends Symbol implements RoutingContract
 {
     #[Pure] public function __toString(): string
     {
@@ -17,4 +21,9 @@ class Input extends Symbol
 	transform: skew(-10deg);'>$label</div>";
     }
 
+    public function addRoutes()
+    {
+    }
+
+    abstract public function create(): Factory|View|Application;
 }

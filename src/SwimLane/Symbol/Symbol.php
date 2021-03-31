@@ -82,6 +82,12 @@ class Symbol
         $this->label = $label;
         return $this;
     }
+    public function getBaseUri(): string
+    {
+        $reflect = new ReflectionClass($this);
+        $shortName = $reflect->getShortName();
+        return Str::snake($shortName);
+    }
 
     /**
      * @return string
