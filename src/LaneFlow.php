@@ -68,7 +68,7 @@ class LaneFlow
             });
         $routableSymbols
             ->each(function (RoutingContract $routingContract) {
-                $routingContract->addRoutes();
+                $routingContract->registerRoutes();
             });
     }
 }
