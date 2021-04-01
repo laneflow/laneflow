@@ -4,6 +4,7 @@
 namespace Laneflow\Laneflow\SwimLane\Symbol;
 
 
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -23,10 +24,15 @@ abstract class Input extends Symbol implements RoutingContract
 	transform: skew(-10deg);'> <a href='$uri'>$label</a></div>";
     }
 
+    /**
+     * @throws Exception
+     */
     public function registerRoutes()
     {
-        $uri = $this->getBaseUri();
-        Route::get($uri, [static::class, 'create'])->name($uri);
+        if(empty($this->resourceName)) {
+            $uri = $this->getBaseUri();
+            Route::get($uri, [static::class, 'create'])->name($uri);
+        }
     }
 
     abstract public function create(): Factory|View|Application;
