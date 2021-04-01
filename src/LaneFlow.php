@@ -54,7 +54,7 @@ class LaneFlow
         return $this->diagram;
     }
 
-    public function addRoutes()
+    public function registerRoutes()
     {
         $routableSymbols = $this
             ->getSwimLane()
