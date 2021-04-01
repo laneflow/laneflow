@@ -4,6 +4,7 @@
 namespace Laneflow\Laneflow\SwimLane\Symbol;
 
 
+use Exception;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Laneflow\Laneflow\SwimLane\Step\Step;
@@ -11,6 +12,7 @@ use ReflectionClass;
 
 class Symbol
 {
+    protected string $resourceName = '';
     protected string $code;
     protected string $label;
     protected Step $step;
@@ -82,8 +84,20 @@ class Symbol
         $this->label = $label;
         return $this;
     }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
     public function getBaseUri(): string
     {
+        if(!empty($this->resourceName)) {
+            if(!function_exists('route')){
+                throw new Exception('ERRCODE: 43287053473');
+            }
+            return route($this->resourceName.'.create');
+        }
+
         $reflect = new ReflectionClass($this);
         $shortName = $reflect->getShortName();
         return Str::snake($shortName);
