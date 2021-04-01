@@ -34,14 +34,22 @@ class Lane
         return $this;
     }
 
-    public function __construct()
+    public function __construct($code = null, $label = null)
     {
         $this->setSymbols(new Symbols());
         $this->setResponsibles(new Responsibles());
         $reflect = new ReflectionClass($this);
         $shortName = $reflect->getShortName();
-        $this->setCode(Str::snake($shortName));
-        $this->setLabel(Str::title($shortName));
+
+        if(empty($code)) {
+            $code = Str::snake($shortName);
+        }
+        $this->setCode($code);
+
+        if(empty($label)) {
+            $label = Str::title($shortName);
+        }
+        $this->setLabel($label);
 
     }
 
