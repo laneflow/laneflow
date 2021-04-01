@@ -4,13 +4,12 @@
 namespace Laneflow\Laneflow\SwimLane\Symbol;
 
 
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\Pure;
 use Laneflow\Laneflow\SwimLane\Step\Step;
 use ReflectionClass;
 
-class Symbol extends Controller
+class Symbol
 {
     protected string $code;
     protected string $label;
